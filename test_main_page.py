@@ -10,5 +10,6 @@ def test_open_steam(browser):
     page = MainPage(browser, url)
 
     page.open()
+    page.should_be_login_link()
     page.go_to_login_page()
   
