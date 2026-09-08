@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
+from urllib.parse import urlparse
 
 class BasePage():
     def __init__(self, browser, url):
@@ -14,7 +15,13 @@ class BasePage():
             )
         except NoSuchElementException:
             return False
-        return True    
+        return True 
+
+    def should_be_on_page(self, expected_path):
+        current_url = self.browser.current_url
+        parsed_url = urlparse(current_url)
+
+        assert parsed_url.path.startswith(expected_path), f"Expected path to start with {expected_path}, got {parsed_url.path}"       
 
 
     def open(self):
