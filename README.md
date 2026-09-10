@@ -21,17 +21,18 @@
 
 selenium_testing/
 ├── pages/
-│ ├── init.py
-│ ├── base_page.py # Базовый класс с общими методами
-│ ├── main_page.py # Главная страница
-│ ├── login_page.py # Страница авторизации
-│ ├── register_page.py # Страница регистрации
-│ └── locators.py # Локаторы для всех страниц
-├── test_main_page.py # Тесты 
-├── conftest.py # Фикстуры pytest
-├── requirements.txt # Зависимости проекта
-├── .gitignore
-└── README.md
+│   ├── __init__.py           
+│   ├── base_page.py          
+│   ├── main_page.py          
+│   ├── login_page.py         
+│   ├── register_page.py      
+│   └── locators.py           
+├── test_main_page.py         
+├── conftest.py               
+├── requirements.txt          
+├── .env.example              
+├── .gitignore                
+└── README.md                 
 
 ---
 
