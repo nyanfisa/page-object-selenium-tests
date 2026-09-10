@@ -21,18 +21,18 @@
 
 selenium_testing/
 ├── pages/
-│   ├── __init__.py           
-│   ├── base_page.py          
-│   ├── main_page.py          
-│   ├── login_page.py         
-│   ├── register_page.py      
-│   └── locators.py           
-├── test_main_page.py         
-├── conftest.py               
-├── requirements.txt          
-├── .env.example              
-├── .gitignore                
-└── README.md                 
+│   ├── __init__.py
+│   ├── base_page.py
+│   ├── main_page.py
+│   ├── login_page.py
+│   ├── register_page.py
+│   └── locators.py
+├── test_main_page.py
+├── conftest.py
+├── requirements.txt
+├── .env.example
+├── .gitignore
+└── README.md            
 
 ---
 
