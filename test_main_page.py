@@ -8,42 +8,31 @@ from pages.register_page import RegisterPage
 
 url = "https://store.steampowered.com/"
 
-# def test_open_steam_profile(browser):
-#     # 1. Главная страница
-#     main_page = MainPage(browser, url)
-#     main_page.open()
-#     main_page.should_be_login_link()
-#     #main_page.go_to_login_page()
+def test_open_steam_profile(browser):
+    main_page = MainPage(browser, url)
+    main_page.open()
+    main_page.should_be_login_link()
 
-#     login_page = main_page.go_to_login_page()
-#     login_page.should_be_login_page()
-#     login_page.login_to_profile()
+    login_page = main_page.go_to_login_page()
+    login_page.should_be_login_page()
+    login_page.login_to_profile()
 
-
-@pytest.mark.parametrize("email_field, reenter, captcha_check, agreement_check", [
-    ("test@example.com", "test@example.com", True, True),
-    ("test_user@gmail.com", "test_user@gmail.com", True, True), 
-    ("test_user@gmail.com", "new_user@gmail.com", False, False), 
-    ("test_user@gmail.com", "", True, True),
-    ("test_user@@gmail.com", "test_user@@gmail.com", False, False),
-    (".testuser@gmail.com", ".newuser@gmail.com", True, True),
-    ("test_user@gmailcom", "", False, False),
-    ("", "test_user@gmail.com", True, False),
-    ("", "", False, True)
+@pytest.mark.parametrize("email_field, reenter, agreement_check, expected_result", [
+    pytest.param(
+        "test_user@gmail.com", "test_user@gmail.com", True, "success",
+        marks=pytest.mark.xfail(reason="Steam требует капчу — успешная регистрация не автоматизируется")
+    ),
+    ("test_user@gmail.com", "new_user@gmail.com", False, "error"), 
+    ("test_user@gmail.com", "", True, "error"),
+    ("test_user@@gmail.com", "test_user@@gmail.com", False, "error"),
+    (".testuser@gmail.com", ".newuser@gmail.com", True, "error"),
+    ("test_user@gmailcom", "", False, "error"),
+    ("", "test_user@gmail.com", False, "error"),
+    ("", "", True, "error")
 ])
 
-# @pytest.mark.parametrize("email_field, reenter, agreement_check", [
-#     ("test@example.com", "test@example.com", True),
-#     ("test_user@gmail.com", "test_user@gmail.com", True), 
-#     ("test_user@gmail.com", "new_user@gmail.com", False), 
-#     ("test_user@gmail.com", "", True),
-#     ("test_user@@gmail.com", "test_user@@gmail.com", False),
-#     (".testuser@gmail.com", ".newuser@gmail.com", True),
-#     ("test_user@gmailcom", "", False),
-#     ("", "test_user@gmail.com", False),
-#     ("", "", True)
-# ])
-def test_registration_form(browser, email_field, reenter, captcha_check, agreement_check):
+
+def test_registration_form(browser, email_field, reenter, agreement_check, expected_result):
     main_page = MainPage(browser, url)
     main_page.open()
     main_page.should_be_login_link()
@@ -53,7 +42,12 @@ def test_registration_form(browser, email_field, reenter, captcha_check, agreeme
 
     register_page = login_page.go_to_register_page()
     register_page.should_be_register_page()
-    register_page.fill_the_register_form(email_field, reenter, captcha_check, agreement_check)
+    register_page.fill_the_register_form(email_field, reenter, agreement_check)
+
+    if expected_result == "success":
+        assert not register_page.is_error_visible(), "Registration form error appeared, but was not expected"
+    else:
+        assert register_page.is_error_visible(), "Registration form error did not appear"    
 
 
 

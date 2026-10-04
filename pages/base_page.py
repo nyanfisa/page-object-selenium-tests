@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 from urllib.parse import urlparse
 
 class BasePage():
@@ -16,6 +17,15 @@ class BasePage():
         except NoSuchElementException:
             return False
         return True 
+
+    def is_element_visible(self, how, what, timeout=10):
+            try:
+                WebDriverWait(self.browser, timeout).until(
+                    EC.visibility_of_element_located((how, what))
+                )
+            except TimeoutException:
+                return False
+            return True     
 
     def should_be_on_page(self, expected_path):
         current_url = self.browser.current_url
