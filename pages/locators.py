@@ -15,7 +15,7 @@ class RegisterPageLocators():
     REENTER_EMAIL_FIELD = (By.CSS_SELECTOR, "input[name='reenter_email']")
     COUNTRY_DROPDOWN = (By.CSS_SELECTOR, "select[name='country']")
     COUNTRY_CHOICE = (By.CSS_SELECTOR, "[value='RU']")
-    #IFRAME = (By.CSS_SELECTOR, "iframe[src*='captcha']")
+    CAPTCHA_IFRAME = (By.CSS_SELECTOR, "iframe[src*='captcha']")
     #CAPTCHA_ENTRY_CHECK = (By.CSS_SELECTOR, "div#captcha_entry > div#checkbox")
     AGREEMENT_CHECKBOX = (By.ID, "i_agree_check")
     CREATE_ACCOUNT_BUTTON = (By.ID, "createAccountButton")   

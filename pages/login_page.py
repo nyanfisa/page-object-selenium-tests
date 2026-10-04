@@ -1,7 +1,6 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
 from .register_page import RegisterPage
-from .profile_page import ProfilePage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
