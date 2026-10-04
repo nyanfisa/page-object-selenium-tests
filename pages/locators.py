@@ -5,13 +5,23 @@ class MainPageLocators():
 
 class LoginPageLocators():
     REGISTER_BUTTON = (By.CSS_SELECTOR, "a.login_create_btn")
+    USERNAME_FIELD = (By.XPATH, "//section//form//input[@type='text']")
+    PASSWORD_FIELD = (By.XPATH, "//section//form//input[@type='password']")
+    SUBMIT_BUTTON = (By.XPATH, "//section//form//button[@type='submit']")
 
 class RegisterPageLocators():
     REGISTER_FORM = (By.CSS_SELECTOR, "div.join_form") 
     EMAIL_FIELD = (By.CSS_SELECTOR, "input[name='email']")
-    REENTER_EMIAIL_FIELD = (By.CSS_SELECTOR, "input[name='reenter_email']")
+    REENTER_EMAIL_FIELD = (By.CSS_SELECTOR, "input[name='reenter_email']")
     COUNTRY_DROPDOWN = (By.CSS_SELECTOR, "select[name='country']")
-    IFRAME = (By.CSS_SELECTOR, "iframe[src*='captcha']")
-    CAPTCHA_ENTRY_CHECK = (By.CSS_SELECTOR, "div#captcha_entry > div#checkbox")
+    COUNTRY_CHOICE = (By.CSS_SELECTOR, "[value='RU']")
+    #IFRAME = (By.CSS_SELECTOR, "iframe[src*='captcha']")
+    #CAPTCHA_ENTRY_CHECK = (By.CSS_SELECTOR, "div#captcha_entry > div#checkbox")
+    AGREEMENT_CHECKBOX = (By.ID, "i_agree_check")
     CREATE_ACCOUNT_BUTTON = (By.ID, "createAccountButton")   
+
+class ProfilePageLocators():
+    ACC_PULLDOWN_BUTTON = (By.ID, "account_pulldown") 
+    ACCOUNT_NAME = (By.XPATH, '//div[@id="account_dropdown"]//a[href="https://store.steampowered.com/account/"]/span') 
+
     
