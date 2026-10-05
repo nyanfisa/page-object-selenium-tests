@@ -18,4 +18,4 @@ class RegisterPageLocators():
     AGREEMENT_CHECKBOX = (By.ID, "i_agree_check")
     CREATE_ACCOUNT_BUTTON = (By.ID, "createAccountButton")   
     REGISTRATION_ERROR_MESSAGE = (By.ID, "error_display")
-    EMAIL_CONFIRMATION_POPUP = (By.ID, "email_verification_dialog")
+ 
